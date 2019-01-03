@@ -7,6 +7,7 @@
 void error(int i);
 void tokenize(char *p);
 Node *expr();
+Node *mul();
 Node *term();
 Node *new_node(int ty, Node *lhs, Node *rhs);
 Node *new_node_num(int val);
@@ -30,7 +31,7 @@ Node *new_node_num(int val) {
 }
 
 Node *expr() {
-	Node *lhs = term();
+	Node *lhs = mul();
 	if (tokens[pos].ty == '+') {
 		pos++;
 		return new_node('+', lhs, expr());
@@ -42,11 +43,31 @@ Node *expr() {
 	return lhs;
 }
 
-Node *term() {
-	if (tokens[pos].ty == ND_NUM) return new_node_num(tokens[pos++].val);
-	else {
-		error(pos);
+Node *mul() {
+	Node *lhs = term();
+	if (tokens[pos].ty == '*') {
+		pos++;
+		return new_node('*', lhs, mul());
 	}
+	if (tokens[pos].ty == '/') {
+		pos++;
+		return new_node('/', lhs, mul());
+	}
+	return lhs;
+}
+
+Node *term() {
+	if (tokens[pos].ty == ND_NUM) {
+		return new_node_num(tokens[pos++].val);
+	}
+	if (tokens[pos].ty == '(') {
+		pos++;
+		Node *node = expr();
+		if (tokens[pos].ty != ')') error(pos);
+		pos++;
+		return node;
+	}
+	error(pos);
 }
 
 void gen(Node *node) {
@@ -67,6 +88,13 @@ void gen(Node *node) {
 			break;
 		case '-':
 			printf("	sub rax, rdi\n");
+			break;
+		case '*':
+			printf("	mul rdi\n");
+			break;
+		case '/':
+			printf("	mov rdx, 0\n");
+			printf("	div rdi\n");
 			break;
 	}
 	printf("	push rax\n");
@@ -106,7 +134,7 @@ void tokenize(char *p) {
 			continue;
 		}
 
-		if (*p == '+' || *p == '-') {
+		if (*p == '+' || *p == '-' || *p == '*' || *p == '/' || *p == '(' || *p == ')') {
 			tokens[i].ty = *p;
 			tokens[i].input = p;
 			i++;
