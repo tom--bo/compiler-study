@@ -8,6 +8,7 @@ DAIStmt    : DeclStmt {}
 	   | InputStmt {}
 DeclStmt   : Type VarDefs {}
 Type       : INT {}
+	   | FLOAT {}
 VarDefs    : VarDef {}
 	   | VarDefs COMMA VarDef {}
 VarDef     : ID {}
