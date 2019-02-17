@@ -1,9 +1,7 @@
-[![CircleCI](https://circleci.com/gh/tom--bo/compiler-study/tree/master.svg?style=svg)](https://circleci.com/gh/tom--bo/compiler-study/tree/master)
-
 # what is this
 
-Study-note about small c compiler along with
-- https://www.sigbus.info/compilerbook/
+Study-note about C like language compiler along with
+- Computer Science Library9 コンパイラ入門, 山下義行著
 - flex & bison 
 
 

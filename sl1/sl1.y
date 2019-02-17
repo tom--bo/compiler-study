@@ -33,7 +33,6 @@ Factor     : ID {}
 NumReal    : NUM {}
 	   | REAL {}
 %%
-#include "lex.yy.c"
 int main() {
 	if(!yyparse()) printf("successfully ended\n");
 }

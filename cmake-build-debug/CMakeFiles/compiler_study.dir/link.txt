@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/compiler_study.dir/flex_bison/2/fb1-5.tab.c.o CMakeFiles/compiler_study.dir/flex_bison/2/lex.yy.c.o CMakeFiles/compiler_study.dir/step0/test1.c.o CMakeFiles/compiler_study.dir/step0/test3.c.o CMakeFiles/compiler_study.dir/step1/9cc.c.o CMakeFiles/compiler_study.dir/step2/9cc.c.o CMakeFiles/compiler_study.dir/step3and4/9cc.c.o  -o compiler_study 
