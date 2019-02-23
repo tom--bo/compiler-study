@@ -1,5 +1,5 @@
 %{
-#include "sl1.tab.h"
+#include "parser.tab.h"
 %}
 %%
 int return INT;

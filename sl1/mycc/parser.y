@@ -2,36 +2,36 @@
 %%
 Program    : DAIStmts PrintStmts {}
 DAIStmts   : DeclStmt SEMI {}
-	   | DAIStmts DAIStmt SEMI {}
+		   | DAIStmts DAIStmt SEMI {}
 DAIStmt    : DeclStmt {}
-	   | AssignStmt {}
-	   | InputStmt {}
+		   | AssignStmt {}
+		   | InputStmt {}
 DeclStmt   : Type VarDefs {}
 Type       : INT {}
-	   | FLOAT {}
+		   | FLOAT {}
 VarDefs    : VarDef {}
-	   | VarDefs COMMA VarDef {}
+		   | VarDefs COMMA VarDef {}
 VarDef     : ID {}
-	   | ID EQ NumReal {}
+		   | ID EQ NumReal {}
 AssignStmt : ID EQ Exp {}
 InputStmt  : QU VarRefs {}
 VarRefs    : ID {}
-	   | VarRefs COMMA ID {}
+		   | VarRefs COMMA ID {}
 PrintStmts : /* empty */ {}
-	   | PrintStmts PrintStmt SEMI {}
+		   | PrintStmts PrintStmt SEMI {}
 PrintStmt  : EX Exps {}
 Exps       : Exp {}
 Exp        : Exp ADD Term {}
-	   | Exp SUB Term {}
-	   | Term {}
+		   | Exp SUB Term {}
+		   | Term {}
 Term       : Term MUL Factor {}
-	   | Term DIV Factor {}
-	   | Factor {}
+		   | Term DIV Factor {}
+		   | Factor {}
 Factor     : ID {}
-	   | NumReal {}
-	   | LPAR Exp RPAR {}
+		   | NumReal {}
+		   | LPAR Exp RPAR {}
 NumReal    : NUM {}
-	   | REAL {}
+		   | REAL {}
 %%
 int main() {
 	if(!yyparse()) printf("successfully ended\n");
