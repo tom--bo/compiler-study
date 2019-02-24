@@ -8,6 +8,9 @@ all: mycc/lexer.l mycc/parser.y
 	mv lex.yy.h cfiles/
 	gcc cfiles/*.c -o ./parser
 
+test:
+	./tests/test.sh
+
 clean:
 	rm -f cfiles/*
 	rm -f parser
