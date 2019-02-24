@@ -1,0 +1,4 @@
+int x, abc = 2.1;
+float z1 = 1.7;
+? x;
+

@@ -1,0 +1,5 @@
+int x, abc = 2.1;
+float z1 = 1.7;
+? x;
+int z2;
+z2 = 2*abc*(x-2.6)+z1;
