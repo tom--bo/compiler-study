@@ -1,4 +1,7 @@
 %token INT FLOAT ID NUM REAL COMMA EQ EX QU SEMI ADD SUB MUL DIV LPAR RPAR ERROR
+%{
+#include "lex.yy.h"
+%}
 %%
 Program    : DAIStmts PrintStmts {}
 DAIStmts   : DeclStmt SEMI {}
@@ -21,6 +24,7 @@ PrintStmts : /* empty */ {}
 		   | PrintStmts PrintStmt SEMI {}
 PrintStmt  : EX Exps {}
 Exps       : Exp {}
+		   | Exps COMMA Exp {}
 Exp        : Exp ADD Term {}
 		   | Exp SUB Term {}
 		   | Term {}
@@ -34,7 +38,6 @@ NumReal    : NUM {}
 		   | REAL {}
 %%
 #include <stdio.h>
-#include "lex.yy.h"
 int main() {
 	if(!yyparse()) printf("successfully ended\n");
 }

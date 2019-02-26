@@ -6,7 +6,7 @@ all: mycc/lexer.l mycc/parser.y
 	flex --header-file=lex.yy.h mycc/lexer.l
 	mv lex.yy.c cfiles/
 	mv lex.yy.h cfiles/
-	gcc cfiles/*.c -o ./parser
+	gcc -I cfiles cfiles/*.c -o ./parser
 
 test:
 	./tests/test.sh
